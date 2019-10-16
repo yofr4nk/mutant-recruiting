@@ -1,0 +1,16 @@
+version: '2'
+services:
+  mutants-server:
+    container_name: mutants-server
+    image: node:8.11
+    working_dir: /usr/src/app/
+    command: bash -c 'yarn install && yarn server:dev'
+    volumes:
+      - ./:/usr/src/app/
+    ports:
+      - "3001:3001"
+    depends_on:
+      - dbmongo
+      
+  dbmongo: 
+    image: mongo

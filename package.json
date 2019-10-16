@@ -1,0 +1,30 @@
+{
+  "name": "mutant-recruiting",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "server:dev": "./node_modules/nodemon/bin/nodemon.js app.js",
+    "lint": "./node_modules/.bin/eslint ./ -f table --ext .js",
+    "test:coverage": "jest --coverage",
+    "test:unit": "jest -t @unit",
+    "test:watch": "jest -t @unit --watchAll",
+    "test": "jest"
+  },
+  "repository": "https://github.com/yofr4nk/mutant-recruiting.git",
+  "author": "Yofrank <yofr4nk@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.10.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-cors": "^0.0.16",
+    "koa-router": "^7.4.0",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.7.5"
+  },
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.3"
+  }
+}
