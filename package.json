@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "pm2 start app.js",
     "server:dev": "./node_modules/nodemon/bin/nodemon.js app.js",
     "lint": "./node_modules/.bin/eslint ./ -f table --ext .js",
     "test:coverage": "DATABASE_HOST=localhost jest --coverage --forceExit --detectOpenHandles",
@@ -21,7 +21,8 @@
     "koa-cors": "^0.0.16",
     "koa-router": "^7.4.0",
     "lodash": "^4.17.15",
-    "mongoose": "^5.7.5"
+    "mongoose": "^5.7.5",
+    "pm2": "^4.1.2"
   },
   "devDependencies": {
     "eslint": "^6.5.1",
