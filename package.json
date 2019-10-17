@@ -9,7 +9,7 @@
     "test:coverage": "jest --coverage",
     "test:unit": "jest -t @unit",
     "test:watch": "jest -t @unit --watchAll",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "repository": "https://github.com/yofr4nk/mutant-recruiting.git",
   "author": "Yofrank <yofr4nk@gmail.com>",
