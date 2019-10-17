@@ -6,7 +6,8 @@ const app = new koa();
 const router = new koaRouter();
 const PORT = process.env.PORT || 3001;
 const { mongoDBConnect } = require('./models/connection'),
-    { mutantDetecting } = require('./controllers/mutantDetecting');
+    { mutantDetecting } = require('./controllers/mutantDetecting'),
+    { getStats } = require('./controllers/mutantStats');
 
 app.use(cors());
 app.use(koaBody({
@@ -15,9 +16,7 @@ app.use(koaBody({
     },
 }));
 
-router.get('/stats/', (ctx) => {
-    ctx.body = 'Ok';
-});
+router.get('/stats/', getStats);
 
 router.post('/mutant/', mutantDetecting);
 

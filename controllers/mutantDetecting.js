@@ -1,16 +1,21 @@
 'use strict';
 
-const flatten = require('lodash/flatten');
+const flatten = require('lodash/flatten'),
+    { setNewDna } = require('./../models/DnaSequence');
 
 const mutantDetecting = (ctx) => {
     const dnaList = ctx.request.body.dna;
 
     return isMutant(dnaList)
         .then(mutantValidation => {
+            setNewDna(dnaList, mutantValidation);
+
             if (mutantValidation)
                 ctx.body = 'Ok';
             else
                 ctx.throw(403, 'Is not a Mutant');
+                
+            return mutantValidation;
         });
 };
 
