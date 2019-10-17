@@ -8,7 +8,7 @@
     "lint": "./node_modules/.bin/eslint ./ -f table --ext .js",
     "test:coverage": "jest --coverage",
     "test:unit": "jest -t @unit",
-    "test:watch": "jest -t @unit --watchAll",
+    "test:watch": "jest -t --watchAll",
     "test": "jest --coverage"
   },
   "repository": "https://github.com/yofr4nk/mutant-recruiting.git",

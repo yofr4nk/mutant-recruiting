@@ -23,6 +23,9 @@ router.post('/mutant/', mutantDetecting);
 app.use(router.routes());
 app.use(router.allowedMethods());
 app.listen(PORT, () => {
-    mongoDBConnect();
+    mongoDBConnect()
+        .then(connectionData => console.log(connectionData))
+        .catch(err => console.log(err));
+    
     console.log('Server is running in port', PORT);
 });
