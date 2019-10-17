@@ -6,10 +6,10 @@
     "start": "node app.js",
     "server:dev": "./node_modules/nodemon/bin/nodemon.js app.js",
     "lint": "./node_modules/.bin/eslint ./ -f table --ext .js",
-    "test:coverage": "jest --coverage",
+    "test:coverage": "jest --coverage --forceExit --detectOpenHandles",
     "test:unit": "jest -t @unit",
     "test:watch": "jest -t --watchAll",
-    "test": "jest --coverage"
+    "test": "jest --coverage --forceExit --detectOpenHandles"
   },
   "repository": "https://github.com/yofr4nk/mutant-recruiting.git",
   "author": "Yofrank <yofr4nk@gmail.com>",
