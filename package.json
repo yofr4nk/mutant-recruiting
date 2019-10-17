@@ -15,6 +15,7 @@
   "author": "Yofrank <yofr4nk@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "aws-sdk": "^2.552.0",
     "dotenv": "^8.2.0",
     "koa": "^2.10.0",
     "koa-bodyparser": "^4.2.1",

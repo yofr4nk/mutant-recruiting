@@ -11,7 +11,8 @@ const PORT = process.env.PORT || 3001;
 const DATABASE_HOST = process.env.DATABASE_HOST;
 const { mongoDBConnect } = require('./models/connection'),
     { mutantDetecting } = require('./controllers/mutantDetecting'),
-    { getStats } = require('./controllers/mutantStats');
+    { getStats } = require('./controllers/mutantStats'),
+    { cloudFrontCache } = require('./middlewares/');
 
 app.use(cors());
 app.use(koaBody({
@@ -22,7 +23,7 @@ app.use(koaBody({
 
 router.get('/stats/', getStats);
 
-router.post('/mutant/', mutantDetecting);
+router.post('/mutant/', cloudFrontCache, mutantDetecting);
 
 //Health check
 router.get('/ping/', (ctx) => {
