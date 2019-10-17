@@ -25,8 +25,8 @@ router.get('/stats/', getStats);
 router.post('/mutant/', mutantDetecting);
 
 //Health check
-router.get('/ping/', () => {
-    return 'pong';
+router.get('/ping/', (ctx) => {
+    return ctx.body = 'pong';
 });
 
 app.use(router.routes());
