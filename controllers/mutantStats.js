@@ -14,15 +14,35 @@ const getStats = (ctx) => {
 
 const buildDnaStats = (statsData) => {
     const dnaStatsValidation = {
-        count_mutant_dna: statsData[0].count,
-        count_human_dna: statsData[1].count,
-        ratio: statsData[0].count / statsData[1].count,
-    };
+            count_mutant_dna: 0,
+            count_human_dna: 0,
+            ratio: 0,
+        },
+        countMutantDna = statsData.find(stats => stats._id),
+        countHumanDna = statsData.find(stats => !stats._id);
+
+    if (countMutantDna)
+        dnaStatsValidation['count_mutant_dna'] = countMutantDna.count;
+
+    if (countHumanDna)
+        dnaStatsValidation['count_human_dna'] = countHumanDna.count;
+    
+    dnaStatsValidation['ratio'] = getRatio(dnaStatsValidation['count_mutant_dna'], dnaStatsValidation['count_human_dna']);
 
     return dnaStatsValidation;
+};
+
+const getRatio = (countMutantDna, countHumanDna) => {
+    const ratio = countMutantDna / countHumanDna;
+    
+    if (!isFinite(ratio))
+        return 0;
+    else
+        return ratio;
 };
 
 module.exports = {
     getStats,
     buildDnaStats,
+    getRatio,
 };

@@ -11,11 +11,9 @@ const mutantDetecting = (ctx) => {
             setNewDna(dnaList, mutantValidation);
 
             if (mutantValidation)
-                ctx.body = 'Ok';
+                return ctx.body = 'Ok';
             else
-                ctx.throw(403, 'Is not a Mutant');
-                
-            return mutantValidation;
+                return ctx.throw(403, 'Is not a Mutant');
         });
 };
 

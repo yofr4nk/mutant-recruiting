@@ -9,7 +9,7 @@ const {
     setDnaItem,
     getDetectionSummary,
     isMutant,
-} = require('./../../controllers/mutantDetecting');
+} = require('../../../controllers/mutantDetecting');
 
 describe('Mutants detection tests @unit', () => {
     describe('DNA items allowed', () => {

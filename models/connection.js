@@ -13,15 +13,6 @@ const mongoDBConnect = (envHost) => new Promise((resolve, reject) => {
     });
 });
 
-const mongoDBdisconnect = () => new Promise((resolve, reject) => {
-    return mongoose.connection.close((err) => {
-        if (err) return reject(err);
-
-        return resolve('Mongodb connection has been closed');
-    });
-});
-
 module.exports = {
     mongoDBConnect,
-    mongoDBdisconnect,
 };
