@@ -2,16 +2,35 @@
 
 const flatten = require('lodash/flatten');
 
-const isMutant = (ctx) => {
-    const horizontalSequence = getSequencesQuantity(ctx.request.body.dna),
-        verticalSequence = getVerticalSequences(ctx.request.body.dna),
-        obliqueSequences = getObliques(ctx.request.body.dna);
-    
-    ctx.body = {
-        horizontalSequence: horizontalSequence,
-        verticalSequence: getSequencesQuantity(verticalSequence),
-        obliqueSequence: getSequencesQuantity(obliqueSequences)
-    };
+const mutantDetecting = (ctx) => {
+    const dnaList = ctx.request.body.dna;
+
+    return isMutant(dnaList)
+        .then(mutantValidation => {
+            if (mutantValidation)
+                ctx.body = 'Ok';
+            else
+                ctx.throw(403, 'Is not a Mutant');
+        });
+};
+
+const isMutant = (dnaList) => {
+    const verticalSequence = getVerticalSequences(dnaList);
+    const obliqueSequences = getObliques(dnaList);
+
+    return Promise.all([
+        getSequencesQuantity(dnaList),
+        getSequencesQuantity(verticalSequence),
+        getSequencesQuantity(obliqueSequences),
+    ]).then(sequences => {
+        const detectionSummary = getDetectionSummary(sequences);
+
+        return (detectionSummary > 1);
+    });
+};
+
+const getDetectionSummary = (sequences) => {
+    return sequences.reduce((current, next) => current + next, 0);
 };
 
 const isAllowedDna = (dnaItem) => {
@@ -26,7 +45,7 @@ const getVerticalSequences = (dnaList) => {
     for (let index=0;index < dnaList.length; index++) {
         const dnaSequence = dnaList[index];
 
-        for (let itemIndex=0;itemIndex < dnaSequence.split('').length; itemIndex++) {
+        for (let itemIndex = 0;itemIndex < dnaSequence.split('').length; itemIndex++) {
             const dnaItem = dnaSequence[itemIndex];
 
             if (verticalBox[itemIndex])
@@ -89,7 +108,7 @@ const getSequencesQuantity = (params) => {
 
     let sequenceAccount = 0;
     
-    for (let index=0;index < params.length; index++) {
+    for (let index = 0;index < params.length; index++) {
         const dnaSequence = params[index];
 
         if (hasEqualSequence(dnaSequence))
@@ -130,4 +149,6 @@ module.exports = {
     getVerticalSequences,
     getObliques,
     setDnaItem,
+    getDetectionSummary,
+    mutantDetecting,
 };
