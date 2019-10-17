@@ -8,12 +8,14 @@ const mutantDetecting = (ctx) => {
 
     return isMutant(dnaList)
         .then(mutantValidation => {
-            setNewDna(dnaList, mutantValidation);
-
-            if (mutantValidation)
-                return ctx.body = 'Ok';
-            else
-                return ctx.throw(403, 'Is not a Mutant');
+            return setNewDna(dnaList, mutantValidation)
+                .then(() => {
+                    if (mutantValidation)
+                        return ctx.body = 'Ok';
+                    else
+                        return ctx.throw(403, 'Is not a Mutant');
+                })
+                .catch(err => ctx.throw(500, err));
         });
 };
 
