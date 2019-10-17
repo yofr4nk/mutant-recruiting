@@ -6,15 +6,16 @@
     "start": "node app.js",
     "server:dev": "./node_modules/nodemon/bin/nodemon.js app.js",
     "lint": "./node_modules/.bin/eslint ./ -f table --ext .js",
-    "test:coverage": "jest --coverage --forceExit --detectOpenHandles",
+    "test:coverage": "DATABASE_HOST=localhost jest --coverage --forceExit --detectOpenHandles",
     "test:unit": "jest -t @unit",
-    "test:watch": "jest -t --watchAll",
-    "test": "jest --coverage --forceExit --detectOpenHandles"
+    "test:watch": "DATABASE_HOST=localhost jest -t --watchAll",
+    "test": "DATABASE_HOST=localhost jest --coverage --forceExit --detectOpenHandles"
   },
   "repository": "https://github.com/yofr4nk/mutant-recruiting.git",
   "author": "Yofrank <yofr4nk@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "koa": "^2.10.0",
     "koa-bodyparser": "^4.2.1",
     "koa-cors": "^0.0.16",

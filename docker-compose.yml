@@ -9,6 +9,8 @@ services:
       - ./:/usr/src/app/
     ports:
       - "3001:3001"
+    environment:
+      - DATABASE_HOST=dbmongo
     depends_on:
       - dbmongo
       
