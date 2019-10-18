@@ -19,8 +19,23 @@ Koa | Node | Yarn
 git clone https://github.com/yofr4nk/mutant-recruiting.git
 ```
 
-### run docker-compose to install application
+### Run docker-compose to install and run the server
 ```
 docker-compose up
+```
+
+### After to install the app, you can go to
+API | Method | Body
+--- | --- | ---
+***http://localhost:3001/mutants*** | ***POST*** | ***{ dna: ['CTA', 'GAT', 'CTA'] }***
+***http://localhost:3001/stats*** | ***GET*** |
+
+### To run tests
+- make sure you have MongoDB instance running (There are component tests using the database).
+- The test run with: 
+```
+- yarn test
+- or
+- yarn test:coverage
 ```
 
