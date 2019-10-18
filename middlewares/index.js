@@ -26,7 +26,7 @@ const updateCloudFrontCache = (canUpdateCloudfront, distributionId) => new Promi
                 Paths: {
                     Quantity: '1',
                     Items: [
-                        '/stats/',
+                        '/stats*',
                     ],
                 },
             },
